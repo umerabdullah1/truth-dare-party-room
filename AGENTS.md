@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project architecture
+- Apply database schema changes through the Lovable database migration tool and keep its generated migration artifacts unedited, so schema history stays synchronized with the managed database.

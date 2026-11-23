@@ -1,6 +1,16 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, Check, Clipboard, Crown, LoaderCircle, Users, Zap } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  Clipboard,
+  Crown,
+  LoaderCircle,
+  MessageCircleQuestion,
+  Users,
+  Zap,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -218,7 +228,7 @@ function RoomPage() {
                     <div>
                       <p className="text-sm font-bold uppercase">{room.current_kind === "truth" ? "Truth" : "Dare"} · Round {room.turn_number}</p>
                       <h2 className="mt-2 font-display text-4xl">{currentPlayer?.nickname ?? "Next player"}</h2>
-                      <p className="mt-1 text-sm">{currentPlayer?.id === access?.playerId ? "You’re up" : "Your turn to answer"}</p>
+                      <p className="mt-1 text-sm">{currentPlayer?.id === access?.playerId ? "You’re up" : "Pass the room to them"}</p>
                     </div>
                     {room.current_kind === "truth" ? <MessageCircleQuestion className="size-7" aria-hidden="true" /> : <Zap className="size-7" aria-hidden="true" />}
                   </div>

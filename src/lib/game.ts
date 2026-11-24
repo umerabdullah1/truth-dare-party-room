@@ -43,14 +43,14 @@ function requiredString(record: Record<string, Json | undefined>, key: string): 
 function readRoom(value: Json | null): GameRoom | null {
   const record = asRecord(value);
   if (!record) return null;
-  const status = asString(record.status);
-  const kind = asString(record.current_kind);
-  const playersValue = record.players;
+  const status = asString(record["status"]);
+  const kind = asString(record["current_kind"]);
+  const playersValue = record["players"];
   const players = Array.isArray(playersValue)
     ? playersValue.flatMap((player): RoomPlayer[] => {
         const item = asRecord(player);
-        const id = item ? asString(item.id) : null;
-        const nickname = item ? asString(item.nickname) : null;
+        const id = item ? asString(item["id"]) : null;
+        const nickname = item ? asString(item["nickname"]) : null;
         return id && nickname ? [{ id, nickname }] : [];
       })
     : [];
@@ -61,10 +61,10 @@ function readRoom(value: Json | null): GameRoom | null {
     invite_code: requiredString(record, "invite_code"),
     room_name: requiredString(record, "room_name"),
     status,
-    turn_number: typeof record.turn_number === "number" ? record.turn_number : 0,
-    current_player_id: asString(record.current_player_id),
+    turn_number: typeof record["turn_number"] === "number" ? record["turn_number"] : 0,
+    current_player_id: asString(record["current_player_id"]),
     current_kind: kind === "truth" || kind === "dare" ? kind : null,
-    current_prompt: asString(record.current_prompt),
+    current_prompt: asString(record["current_prompt"]),
     players,
   };
 }

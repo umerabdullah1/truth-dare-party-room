@@ -8,6 +8,13 @@
       "when": 1795376892202,
       "tag": "0000_truth_dare_rooms_and_admin_prompts",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795504825433,
+      "tag": "0001_admin_role_protection",
+      "breakpoints": true
     }
   ]
 }

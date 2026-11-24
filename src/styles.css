@@ -33,6 +33,9 @@
   --color-truth-foreground: var(--truth-foreground);
   --color-dare: var(--dare);
   --color-dare-foreground: var(--dare-foreground);
+  --color-google-background: var(--google-background);
+  --color-google-foreground: var(--google-foreground);
+  --color-google-border: var(--google-border);
   --font-display: Georgia, "Times New Roman", serif;
   --font-body: ui-sans-serif, system-ui, sans-serif;
   --shadow-game: 0 18px 44px -30px color-mix(in oklab, var(--foreground) 40%, transparent);
@@ -40,11 +43,11 @@
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.97 0.026 106);
+  --background: oklch(0.975 0.018 172);
   --foreground: oklch(0.2 0.04 165);
-  --card: oklch(0.995 0.008 106);
+  --card: oklch(0.995 0.006 172);
   --card-foreground: oklch(0.2 0.04 165);
-  --popover: oklch(0.995 0.008 106);
+  --popover: oklch(0.995 0.006 172);
   --popover-foreground: oklch(0.2 0.04 165);
   --primary: oklch(0.58 0.16 151);
   --primary-foreground: oklch(0.99 0.012 106);
@@ -63,6 +66,9 @@
   --truth-foreground: oklch(0.24 0.065 130);
   --dare: oklch(0.76 0.17 30);
   --dare-foreground: oklch(0.25 0.06 28);
+  --google-background: oklch(1 0 0);
+  --google-foreground: oklch(0.25 0.006 165);
+  --google-border: oklch(0.55 0.006 165);
 }
 
 .dark {
@@ -89,6 +95,9 @@
   --truth-foreground: oklch(0.97 0.03 106);
   --dare: oklch(0.52 0.12 30);
   --dare-foreground: oklch(0.98 0.01 28);
+  --google-background: oklch(0.18 0.035 165);
+  --google-foreground: oklch(0.96 0.025 106);
+  --google-border: oklch(0.66 0.02 165);
 }
 
 @layer base {

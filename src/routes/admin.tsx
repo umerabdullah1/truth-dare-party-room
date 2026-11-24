@@ -17,6 +17,7 @@ type AdminLoad =
   | { status: "denied" }
   | { status: "error"; message: string }
   | { status: "ready"; profile: Profile; prompts: Prompt[] };
+type AdminState = AdminLoad["status"] | "loading";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -97,7 +98,7 @@ function GoogleMark() {
 }
 
 function AdminPage() {
-  const [status, setStatus] = useState<AdminLoad["status"]>("loading");
+  const [status, setStatus] = useState<AdminState>("loading");
   const [profile, setProfile] = useState<Profile | null>(null);
   const [prompts, setPrompts] = useState<Prompt[]>([]);
   const [displayName, setDisplayName] = useState("");
@@ -125,6 +126,8 @@ function AdminPage() {
     let mounted = true;
     void loadAdminArea().then((result) => {
       if (mounted) applyLoad(result);
+    }).catch(() => {
+      if (mounted) applyLoad({ status: "error", message: "Could not check access. Try again." });
     });
     return () => {
       mounted = false;
@@ -258,7 +261,7 @@ function AdminPage() {
               <h1 className="mt-2 font-display text-4xl">Game controls</h1>
               <p className="mt-3 text-muted-foreground">Sign in with the approved Google account to continue.</p>
             </div>
-            <Button type="button" variant="outline" onClick={handleGoogleSignIn} disabled={busy} className="min-h-11 w-full max-w-xs border-muted-foreground/50 bg-card text-foreground hover:bg-muted">
+            <Button type="button" variant="outline" onClick={handleGoogleSignIn} disabled={busy} className="min-h-11 w-full max-w-xs border-google-border bg-google-background text-google-foreground hover:bg-google-background">
               <GoogleMark />
               {busy ? "Connecting…" : "Continue with Google"}
             </Button>

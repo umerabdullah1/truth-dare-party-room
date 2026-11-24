@@ -36,11 +36,17 @@ export const Route = createFileRoute("/admin")({
 
 async function loadAdminArea(): Promise<AdminLoad> {
   const {
+    data: { session },
+    error: sessionError,
+  } = await supabase.auth.getSession();
+  if (sessionError) return { status: "error", message: "Could not check the current sign-in. Try again." };
+  if (!session) return { status: "signed-out" };
+
+  const {
     data: { user },
     error: userError,
   } = await supabase.auth.getUser();
-  if (userError) return { status: "error", message: "Could not verify this account. Try again." };
-  if (!user) return { status: "signed-out" };
+  if (userError || !user) return { status: "error", message: "Could not verify this account. Try again." };
   if (!isConfiguredAdmin(user.email)) {
     await supabase.auth.signOut();
     return { status: "denied" };

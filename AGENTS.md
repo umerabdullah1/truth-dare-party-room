@@ -31,3 +31,5 @@ use the editor.
 
 ## Project architecture
 - Apply database schema changes through the Lovable database migration tool and keep its generated migration artifacts unedited, so schema history stays synchronized with the managed database.
+- Store administrator privileges in a separate role table and enforce them with row-level policies, so profile details cannot grant access.
+- Keep account-free room actions behind invite-code database functions and require a separate host secret to deal turns, so public play does not expose room controls.
